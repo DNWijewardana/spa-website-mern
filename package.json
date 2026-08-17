@@ -1,0 +1,19 @@
+{
+  "name": "serenity-spa-mern",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serenity Spa — calm, high-converting spa website on the MERN stack",
+  "scripts": {
+    "dev": "concurrently -n \"API,WEB\" -c \"green,cyan\" \"npm run server\" \"npm run client\"",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "build": "npm --prefix client run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
