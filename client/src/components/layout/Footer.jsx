@@ -17,6 +17,7 @@ export default function Footer() {
             <li><Link to="/services" className="hover:text-sand-500">Services</Link></li>
             <li><Link to="/membership" className="hover:text-sand-500">Membership</Link></li>
             <li><Link to="/gift-cards" className="hover:text-sand-500">Gift Cards</Link></li>
+            <li><Link to="/blog" className="hover:text-sand-500">Journal</Link></li>
             <li><Link to="/about" className="hover:text-sand-500">About</Link></li>
             <li><Link to="/booking" className="hover:text-sand-500">Book</Link></li>
             <li><Link to="/contact" className="hover:text-sand-500">Contact</Link></li>

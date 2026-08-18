@@ -1,5 +1,6 @@
 import PageTransition from '../components/layout/PageTransition.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
+import TherapistsSection from '../components/sections/TherapistsSection.jsx';
 
 const VALUES = [
   { icon: '🌿', title: 'Natural Care', text: 'Botanical products, chosen for skin and soul.' },
@@ -39,6 +40,8 @@ export default function About() {
           ))}
         </div>
       </section>
+
+      <TherapistsSection />
     </PageTransition>
   );
 }

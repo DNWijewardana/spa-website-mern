@@ -4,6 +4,11 @@ import { useRef, useEffect, useState } from 'react';
 import PageTransition from '../components/layout/PageTransition.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
 import TestimonialCarousel from '../components/sections/TestimonialCarousel.jsx';
+import ExperienceJourney from '../components/sections/ExperienceJourney.jsx';
+import TherapistsSection from '../components/sections/TherapistsSection.jsx';
+import GalleryMosaic from '../components/sections/GalleryMosaic.jsx';
+import OfferBand from '../components/sections/OfferBand.jsx';
+import NewsletterSection from '../components/sections/NewsletterSection.jsx';
 import Counter from '../components/ui/Counter.jsx';
 import { getServices } from '../lib/api.js';
 import { EASE } from '../lib/motion.js';
@@ -163,6 +168,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Experience journey (parallax) */}
+      <ExperienceJourney />
+
       {/* Stats */}
       <section className="bg-sage-900 py-20 text-sage-100">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 px-6 md:grid-cols-4">
@@ -177,6 +185,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Therapists */}
+      <TherapistsSection />
+
       {/* Testimonials */}
       <section className="section text-center">
         <Reveal><p className="eyebrow">Kind Words</p></Reveal>
@@ -184,6 +195,15 @@ export default function Home() {
           <TestimonialCarousel />
         </div>
       </section>
+
+      {/* Gallery */}
+      <GalleryMosaic />
+
+      {/* Seasonal offer */}
+      <OfferBand />
+
+      {/* Newsletter */}
+      <NewsletterSection />
 
       {/* Closing CTA */}
       <section className="relative overflow-hidden bg-sand-500 py-24 text-center text-white">
