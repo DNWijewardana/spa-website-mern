@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useAuth } from '../../context/AuthContext.jsx';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -15,6 +16,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -53,9 +55,19 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <Link to="/booking" className="hidden md:inline-flex btn-primary !px-6 !py-2 text-sm">
-          Book Now
-        </Link>
+        <div className="hidden items-center gap-4 md:flex">
+          {user ? (
+            <>
+              {user.role === 'admin' && (
+                <Link to="/admin" className="text-sm text-sage-900 hover:text-sand-500">Admin</Link>
+              )}
+              <Link to="/account" className="text-sm text-sage-900 hover:text-sand-500">Account</Link>
+            </>
+          ) : (
+            <Link to="/login" className="text-sm text-sage-900 hover:text-sand-500">Sign In</Link>
+          )}
+          <Link to="/booking" className="btn-primary !px-6 !py-2 text-sm">Book Now</Link>
+        </div>
 
         <button
           className="text-sage-900 md:hidden"
@@ -88,6 +100,16 @@ export default function Navbar() {
                 </NavLink>
               </li>
             ))}
+            {user ? (
+              <>
+                {user.role === 'admin' && (
+                  <li><Link to="/admin" onClick={() => setOpen(false)} className="block py-2 font-body text-sage-900">Admin</Link></li>
+                )}
+                <li><Link to="/account" onClick={() => setOpen(false)} className="block py-2 font-body text-sage-900">Account</Link></li>
+              </>
+            ) : (
+              <li><Link to="/login" onClick={() => setOpen(false)} className="block py-2 font-body text-sage-900">Sign In</Link></li>
+            )}
             <Link to="/booking" onClick={() => setOpen(false)} className="btn-primary mt-2">
               Book Now
             </Link>

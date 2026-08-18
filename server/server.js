@@ -18,6 +18,7 @@ import blogRoutes from './routes/blogRoutes.js';
 import giftCardRoutes from './routes/giftCardRoutes.js';
 import newsletterRoutes from './routes/newsletterRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -60,6 +61,7 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/giftcards', giftCardRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/admin', adminRoutes);
 
 // --- Error handling (must be last) ---
 app.use(notFound);

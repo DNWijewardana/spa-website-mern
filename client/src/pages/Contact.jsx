@@ -1,14 +1,28 @@
 import { useState } from 'react';
 import PageTransition from '../components/layout/PageTransition.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
+import Button from '../components/ui/Button.jsx';
+import { useToast } from '../context/ToastContext.jsx';
+import { sendContact } from '../lib/api.js';
 
 export default function Contact() {
+  const { toast } = useToast();
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: wire to POST /api/contact
-    setSent(true);
+    setLoading(true);
+    try {
+      const res = await sendContact(form);
+      toast(res.message || 'Message sent!');
+      setSent(true);
+    } catch (err) {
+      toast(err.response?.data?.message || 'Could not send message.', 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -35,10 +49,22 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl bg-white/70 p-8 shadow-soft">
-                <input required placeholder="Your name" className="w-full rounded-full border border-stone-200 bg-linen px-5 py-3 outline-none focus:border-sage-500" />
-                <input required type="email" placeholder="Your email" className="w-full rounded-full border border-stone-200 bg-linen px-5 py-3 outline-none focus:border-sage-500" />
-                <textarea required rows="4" placeholder="Your message" className="w-full rounded-2xl border border-stone-200 bg-linen px-5 py-3 outline-none focus:border-sage-500" />
-                <button className="btn-primary w-full">Send Message</button>
+                <input
+                  required placeholder="Your name" value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="w-full rounded-full border border-stone-200 bg-linen px-5 py-3 outline-none focus:border-sage-500"
+                />
+                <input
+                  required type="email" placeholder="Your email" value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="w-full rounded-full border border-stone-200 bg-linen px-5 py-3 outline-none focus:border-sage-500"
+                />
+                <textarea
+                  required rows="4" placeholder="Your message" value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="w-full rounded-2xl border border-stone-200 bg-linen px-5 py-3 outline-none focus:border-sage-500"
+                />
+                <Button loading={loading} className="w-full">Send Message</Button>
               </form>
             )}
           </Reveal>

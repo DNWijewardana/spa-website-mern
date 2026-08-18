@@ -13,6 +13,11 @@ import GiftCards from './pages/GiftCards.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import Contact from './pages/Contact.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+import Account from './pages/Account.jsx';
+import AdminDashboard from './pages/admin/AdminDashboard.jsx';
+import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -35,6 +40,16 @@ export default function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/account"
+              element={<ProtectedRoute><Account /></ProtectedRoute>}
+            />
+            <Route
+              path="/admin"
+              element={<ProtectedRoute adminOnly><AdminDashboard /></ProtectedRoute>}
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
