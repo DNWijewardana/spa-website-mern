@@ -13,6 +13,11 @@ import authRoutes from './routes/authRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 import testimonialRoutes from './routes/testimonialRoutes.js';
+import therapistRoutes from './routes/therapistRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+import giftCardRoutes from './routes/giftCardRoutes.js';
+import newsletterRoutes from './routes/newsletterRoutes.js';
+import contactRoutes from './routes/contactRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -50,6 +55,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/testimonials', testimonialRoutes);
+app.use('/api/therapists', therapistRoutes);
+app.use('/api/blog', blogRoutes);
+app.use('/api/giftcards', giftCardRoutes);
+app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/contact', contactRoutes);
 
 // --- Error handling (must be last) ---
 app.use(notFound);
