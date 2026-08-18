@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import PageTransition from '../components/layout/PageTransition.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
 import TestimonialCarousel from '../components/sections/TestimonialCarousel.jsx';
+import Counter from '../components/ui/Counter.jsx';
 import { getServices } from '../lib/api.js';
 import { EASE } from '../lib/motion.js';
 
@@ -167,7 +168,9 @@ export default function Home() {
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 px-6 md:grid-cols-4">
           {STATS.map((s, i) => (
             <Reveal key={s.label} i={i} className="text-center">
-              <p className="font-display text-4xl text-sand-500 md:text-5xl">{s.value}</p>
+              <p className="font-display text-4xl text-sand-500 md:text-5xl">
+                <Counter value={s.value} />
+              </p>
               <p className="mt-2 text-sm text-sage-300">{s.label}</p>
             </Reveal>
           ))}
