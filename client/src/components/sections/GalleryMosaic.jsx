@@ -2,14 +2,13 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Reveal from '../ui/Reveal.jsx';
 
-// Placeholder gradient tiles (swap `emoji`/gradients for real photos later).
 const TILES = [
-  { id: 1, label: 'Treatment Room', grad: 'from-sage-300 to-sage-500', emoji: '🕯️', span: 'row-span-2' },
-  { id: 2, label: 'Relaxation Lounge', grad: 'from-sand-300 to-sand-500', emoji: '🍵' },
-  { id: 3, label: 'Hydrotherapy Pool', grad: 'from-sage-100 to-sage-300', emoji: '💧' },
-  { id: 4, label: 'Facial Suite', grad: 'from-clay-400 to-sand-500', emoji: '🌸', span: 'row-span-2' },
-  { id: 5, label: 'Herbal Garden', grad: 'from-sage-500 to-sage-900', emoji: '🌿' },
-  { id: 6, label: 'Steam Room', grad: 'from-stone-200 to-stone-400', emoji: '♨️' },
+  { id: 1, label: 'Treatment Room', img: '/images/massage-oil.jpg', span: 'row-span-2' },
+  { id: 2, label: 'Relaxation Lounge', img: '/images/lounge.jpg' },
+  { id: 3, label: 'Hydrotherapy Pool', img: '/images/pool.jpg' },
+  { id: 4, label: 'Facial Suite', img: '/images/facial-suite.jpg', span: 'row-span-2' },
+  { id: 5, label: 'Herbal Ritual', img: '/images/aromatherapy.jpg' },
+  { id: 6, label: 'Steam Room', img: '/images/steam-room.jpg' },
 ];
 
 export default function GalleryMosaic() {
@@ -30,12 +29,16 @@ export default function GalleryMosaic() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               onClick={() => setActive(tile)}
-              className={`group relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br ${tile.grad} shadow-soft`}
+              className="group relative h-full w-full overflow-hidden rounded-2xl shadow-soft"
             >
-              <span className="absolute inset-0 flex items-center justify-center text-5xl opacity-80 transition group-hover:scale-110">
-                {tile.emoji}
-              </span>
-              <span className="absolute inset-x-0 bottom-0 translate-y-full bg-black/30 p-3 text-left text-sm text-white backdrop-blur-sm transition-transform duration-300 group-hover:translate-y-0">
+              <img
+                src={tile.img}
+                alt={tile.label}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110"
+              />
+              <span className="absolute inset-0 bg-gradient-to-t from-sage-900/40 to-transparent" />
+              <span className="absolute inset-x-0 bottom-0 translate-y-full bg-black/40 p-3 text-left text-sm text-white backdrop-blur-sm transition-transform duration-300 group-hover:translate-y-0">
                 {tile.label}
               </span>
             </motion.button>
@@ -53,15 +56,18 @@ export default function GalleryMosaic() {
             onClick={() => setActive(null)}
             className="fixed inset-0 z-[90] flex items-center justify-center bg-sage-900/80 p-6 backdrop-blur-sm"
           >
-            <motion.div
+            <motion.figure
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className={`flex aspect-video w-full max-w-3xl items-center justify-center rounded-2xl bg-gradient-to-br ${active.grad} text-8xl shadow-float`}
+              className="w-full max-w-3xl overflow-hidden rounded-2xl shadow-float"
             >
-              {active.emoji}
-            </motion.div>
+              <img src={active.img} alt={active.label} className="max-h-[80vh] w-full object-cover" />
+              <figcaption className="bg-sage-900 py-3 text-center text-sm text-sage-100">
+                {active.label}
+              </figcaption>
+            </motion.figure>
           </motion.div>
         )}
       </AnimatePresence>

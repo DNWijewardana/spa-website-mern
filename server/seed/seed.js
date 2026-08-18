@@ -22,7 +22,7 @@ const services = [
     category: 'facial',
     description: "Wake up your skin's natural glow with a nourishing, brightening ritual.",
     benefits: ['Brightens complexion', 'Deep hydration', 'Gentle exfoliation'],
-    duration: 50, price: 85, isFeatured: true, image: '/images/radiance-facial.jpg',
+    duration: 50, price: 85, isFeatured: true, image: '/images/facial.jpg',
   },
   {
     name: 'Hot Stone Ritual',
@@ -38,7 +38,7 @@ const services = [
     category: 'hydrotherapy',
     description: 'Float away in a mineral-rich, warm-water calm that soothes body and mind.',
     benefits: ['Detoxifies', 'Relieves aches', 'Restores calm'],
-    duration: 45, price: 70, isFeatured: false, image: '/images/hydrotherapy.jpg',
+    duration: 45, price: 70, isFeatured: false, image: '/images/steam-room.jpg',
   },
   {
     name: 'Aromatherapy Massage',
@@ -46,7 +46,7 @@ const services = [
     category: 'massage',
     description: 'Essential oils and gentle strokes guide you into deep, fragrant relaxation.',
     benefits: ['Eases anxiety', 'Improves sleep', 'Balances mood'],
-    duration: 60, price: 90, isFeatured: false, image: '/images/aromatherapy.jpg',
+    duration: 60, price: 90, isFeatured: false, image: '/images/massage-oil.jpg',
   },
   {
     name: 'Serenity Signature Package',
@@ -54,7 +54,7 @@ const services = [
     category: 'package',
     description: 'A half-day journey: massage, facial, and hydrotherapy in one seamless ritual.',
     benefits: ['Full-body renewal', 'Best value', 'Includes herbal lunch'],
-    duration: 180, price: 260, isFeatured: true, image: '/images/package.jpg',
+    duration: 180, price: 260, isFeatured: true, image: '/images/pool.jpg',
   },
 ];
 
@@ -78,21 +78,21 @@ const posts = [
     slug: 'quiet-power-weekly-reset',
     excerpt: 'Why carving out one calm hour a week changes everything about how you feel.',
     content: 'Rest is not a reward for finishing your work — it is part of the work of being well.\n\nWhen you give yourself a single, protected hour each week, your nervous system learns that calm is available. Over time, that hour becomes an anchor: something your body starts to look forward to and lean on.\n\nStart small. Book the same time each week. Silence your phone. Let the ritual — not the to-do list — lead.',
-    category: 'Wellness', readTime: 4, coverImage: '/images/blog-1.jpg',
+    category: 'Wellness', readTime: 4, coverImage: '/images/lounge.jpg',
   },
   {
     title: 'A Beginner\'s Guide to Aromatherapy',
     slug: 'beginners-guide-aromatherapy',
     excerpt: 'The essential oils we reach for most, and what each one quietly does for you.',
     content: 'Scent is the fastest route to emotion. A single breath of lavender can slow a racing mind before you have even named the feeling.\n\nLavender soothes. Eucalyptus clears. Bergamot lifts. Sandalwood grounds. At Serenity, we blend these to match not just your treatment, but your mood on the day.\n\nAsk your therapist for a scent consultation on your next visit.',
-    category: 'Skincare', readTime: 5, coverImage: '/images/blog-2.jpg',
+    category: 'Skincare', readTime: 5, coverImage: '/images/aromatherapy.jpg',
   },
   {
     title: 'How to Extend That Post-Spa Glow',
     slug: 'extend-post-spa-glow',
     excerpt: 'Simple, gentle habits that keep the calm going long after you leave.',
     content: 'The magic of a treatment does not have to end at the door.\n\nHydrate generously in the hours after. Keep the lighting low that evening. Skip the screens before bed. And breathe — slow, four-count breaths — whenever the day tightens back up.\n\nSmall rituals, repeated, are how a single afternoon becomes a way of living.',
-    category: 'Wellness', readTime: 3, coverImage: '/images/blog-3.jpg',
+    category: 'Wellness', readTime: 3, coverImage: '/images/facial-mask.jpg',
   },
 ];
 

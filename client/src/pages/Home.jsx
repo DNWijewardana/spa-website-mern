@@ -38,11 +38,18 @@ function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 180]);
 
   return (
     <section ref={ref} className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Ambient gradient backdrop */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sage-100 via-linen to-linen" />
+      {/* Cinematic photo backdrop with parallax */}
+      <motion.img
+        src="/images/hero.jpg"
+        alt="Serene spa treatment with hot stones and orchids"
+        style={{ y: imageY }}
+        className="absolute inset-0 -top-16 h-[120%] w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-sage-900/70 via-sage-900/55 to-sage-900/80" />
       <FloatingPetals />
 
       <motion.div style={{ y, opacity }} className="relative z-10 mx-auto max-w-3xl px-6 text-center">
@@ -50,7 +57,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="eyebrow"
+          className="eyebrow !text-sand-300"
         >
           Serenity Spa & Wellness
         </motion.p>
@@ -59,16 +66,16 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.15, ease: EASE }}
-          className="mt-4 text-5xl font-light leading-[1.05] md:text-7xl"
+          className="mt-4 text-5xl font-light leading-[1.05] text-white md:text-7xl"
         >
-          Where Stillness<br /><span className="italic text-sage-500">Becomes You</span>
+          Where Stillness<br /><span className="italic text-sand-300">Becomes You</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35, ease: EASE }}
-          className="mx-auto mt-6 max-w-xl text-lg text-sage-700"
+          className="mx-auto mt-6 max-w-xl text-lg text-white/85"
         >
           Step away from the noise. Your sanctuary for deep rest, radiant skin,
           and restored calm — crafted by expert hands.
@@ -81,7 +88,12 @@ function Hero() {
           className="mt-9 flex flex-wrap items-center justify-center gap-4"
         >
           <Link to="/booking" className="btn-primary">Book Your Escape</Link>
-          <Link to="/services" className="btn-ghost">Explore Treatments</Link>
+          <Link
+            to="/services"
+            className="inline-flex items-center justify-center rounded-full border border-white/50 px-8 py-3 font-body font-medium text-white transition hover:bg-white/10"
+          >
+            Explore Treatments
+          </Link>
         </motion.div>
       </motion.div>
 
@@ -89,10 +101,10 @@ function Hero() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-sage-500"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white/70"
       >
-        <div className="h-10 w-6 rounded-full border border-sage-400/50 p-1">
-          <div className="mx-auto h-2 w-1 rounded-full bg-sage-500" />
+        <div className="h-10 w-6 rounded-full border border-white/50 p-1">
+          <div className="mx-auto h-2 w-1 rounded-full bg-white" />
         </div>
       </motion.div>
     </section>
@@ -151,16 +163,23 @@ export default function Home() {
               <motion.article
                 whileHover={{ y: -8 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                className="group h-full rounded-2xl bg-white/70 p-8 shadow-soft backdrop-blur"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white/70 shadow-soft"
               >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-sage-100 text-2xl">
-                  🌿
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="text-2xl font-normal">{s.name}</h3>
-                <p className="mt-3 text-sm text-sage-700">{s.description}</p>
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-sand-500">From ${s.price}</span>
-                  <span className="text-sm text-sage-500">{s.duration} min</span>
+                <div className="flex flex-1 flex-col p-8">
+                  <h3 className="text-2xl font-normal">{s.name}</h3>
+                  <p className="mt-3 flex-1 text-sm text-sage-700">{s.description}</p>
+                  <div className="mt-6 flex items-center justify-between">
+                    <span className="text-sand-500">From ${s.price}</span>
+                    <span className="text-sm text-sage-500">{s.duration} min</span>
+                  </div>
                 </div>
               </motion.article>
             </Reveal>

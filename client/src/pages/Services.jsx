@@ -46,16 +46,26 @@ export default function Services() {
             <Reveal key={s._id} i={i % 3}>
               <motion.article
                 whileHover={{ y: -6 }}
-                className="flex h-full flex-col rounded-2xl bg-white/70 p-8 shadow-soft"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white/70 shadow-soft"
               >
-                <span className="eyebrow">{s.category}</span>
-                <h3 className="mt-2 text-2xl font-normal">{s.name}</h3>
-                <p className="mt-3 flex-1 text-sm text-sage-700">{s.description}</p>
-                <div className="mt-6 flex items-center justify-between border-t border-stone-200 pt-4">
-                  <span className="text-sand-500">From ${s.price}</span>
-                  <Link to="/booking" className="text-sm text-sage-900 underline-offset-4 hover:underline">
-                    Book →
-                  </Link>
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-8">
+                  <span className="eyebrow">{s.category}</span>
+                  <h3 className="mt-2 text-2xl font-normal">{s.name}</h3>
+                  <p className="mt-3 flex-1 text-sm text-sage-700">{s.description}</p>
+                  <div className="mt-6 flex items-center justify-between border-t border-stone-200 pt-4">
+                    <span className="text-sand-500">From ${s.price}</span>
+                    <Link to="/booking" className="text-sm text-sage-900 underline-offset-4 hover:underline">
+                      Book →
+                    </Link>
+                  </div>
                 </div>
               </motion.article>
             </Reveal>
