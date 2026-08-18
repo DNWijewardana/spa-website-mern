@@ -32,8 +32,12 @@ export default function Blog() {
         {featured && (
           <Reveal className="mt-14">
             <Link to={`/blog/${featured.slug}`} className="group grid gap-8 md:grid-cols-2">
-              <div className="flex aspect-[16/10] items-center justify-center rounded-2xl bg-gradient-to-br from-sage-300 to-sage-500 text-6xl shadow-soft">
-                🌿
+              <div className="aspect-[16/10] overflow-hidden rounded-2xl shadow-soft">
+                <img
+                  src={featured.coverImage}
+                  alt={featured.title}
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
               </div>
               <div className="flex flex-col justify-center">
                 <span className="eyebrow">{featured.category} · {featured.readTime} min read</span>
@@ -53,8 +57,13 @@ export default function Blog() {
             <Reveal key={p._id} i={i % 3}>
               <motion.div whileHover={{ y: -6 }} className="h-full">
                 <Link to={`/blog/${p.slug}`} className="group flex h-full flex-col">
-                  <div className="flex aspect-[16/10] items-center justify-center rounded-2xl bg-gradient-to-br from-sand-300 to-clay-400 text-5xl shadow-soft">
-                    ✨
+                  <div className="aspect-[16/10] overflow-hidden rounded-2xl shadow-soft">
+                    <img
+                      src={p.coverImage}
+                      alt={p.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
                   </div>
                   <span className="eyebrow mt-4">{p.category} · {p.readTime} min</span>
                   <h3 className="mt-2 text-xl font-normal transition group-hover:text-sage-500">{p.title}</h3>

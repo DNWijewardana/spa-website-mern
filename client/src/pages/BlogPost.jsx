@@ -58,8 +58,8 @@ export default function BlogPost() {
         </Reveal>
 
         <Reveal i={1}>
-          <div className="mt-8 flex aspect-[16/9] items-center justify-center rounded-2xl bg-gradient-to-br from-sage-300 to-sage-500 text-7xl shadow-soft">
-            🌿
+          <div className="mt-8 aspect-[16/9] overflow-hidden rounded-2xl shadow-soft">
+            <img src={post.coverImage} alt={post.title} className="h-full w-full object-cover" />
           </div>
         </Reveal>
 
