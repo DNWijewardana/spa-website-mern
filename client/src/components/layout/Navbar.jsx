@@ -7,6 +7,7 @@ const links = [
   { to: '/services', label: 'Services' },
   { to: '/membership', label: 'Membership' },
   { to: '/gift-cards', label: 'Gift Cards' },
+  { to: '/blog', label: 'Journal' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];

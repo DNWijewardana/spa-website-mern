@@ -10,6 +10,8 @@ import About from './pages/About.jsx';
 import Booking from './pages/Booking.jsx';
 import Membership from './pages/Membership.jsx';
 import GiftCards from './pages/GiftCards.jsx';
+import Blog from './pages/Blog.jsx';
+import BlogPost from './pages/BlogPost.jsx';
 import Contact from './pages/Contact.jsx';
 import NotFound from './pages/NotFound.jsx';
 
@@ -30,6 +32,8 @@ export default function App() {
             <Route path="/booking" element={<Booking />} />
             <Route path="/membership" element={<Membership />} />
             <Route path="/gift-cards" element={<GiftCards />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
