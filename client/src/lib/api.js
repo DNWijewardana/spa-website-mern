@@ -6,6 +6,25 @@ const api = axios.create({
   withCredentials: true,
 });
 
+// --- Auth ---
+export const apiRegister = (data) => api.post('/auth/register', data).then((r) => r.data);
+export const apiLogin = (data) => api.post('/auth/login', data).then((r) => r.data);
+export const apiLogout = () => api.post('/auth/logout').then((r) => r.data);
+export const apiMe = () => api.get('/auth/me').then((r) => r.data);
+
+// --- My bookings ---
+export const getMyBookings = () => api.get('/bookings/mine').then((r) => r.data);
+export const cancelBooking = (id) => api.patch(`/bookings/${id}/cancel`).then((r) => r.data);
+
+// --- Admin ---
+export const adminStats = () => api.get('/admin/stats').then((r) => r.data);
+export const adminBookings = () => api.get('/admin/bookings').then((r) => r.data);
+export const adminUpdateBooking = (id, status) =>
+  api.patch(`/admin/bookings/${id}`, { status }).then((r) => r.data);
+export const adminTestimonials = () => api.get('/admin/testimonials').then((r) => r.data);
+export const adminUpdateTestimonial = (id, data) =>
+  api.patch(`/admin/testimonials/${id}`, data).then((r) => r.data);
+
 // --- Services ---
 export const getServices = (params) => api.get('/services', { params }).then((r) => r.data);
 export const getService = (slug) => api.get(`/services/${slug}`).then((r) => r.data);

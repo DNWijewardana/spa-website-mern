@@ -1,7 +1,18 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import confetti from 'canvas-confetti';
 import PageTransition from '../components/layout/PageTransition.jsx';
 import { getServices, getAvailability, createBooking } from '../lib/api.js';
+
+// Soft petal-like confetti burst in the brand palette.
+function celebrate() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+  const colors = ['#C9A96E', '#D8A48F', '#A8C3A8', '#6B8E6E'];
+  confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors, scalar: 1.1 });
+  setTimeout(() => confetti({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0 }, colors }), 250);
+  setTimeout(() => confetti({ particleCount: 40, angle: 120, spread: 55, origin: { x: 1 }, colors }), 400);
+}
 
 const STEPS = ['Service', 'Date & Time', 'Your Details', 'Confirm'];
 
@@ -38,6 +49,7 @@ export default function Booking() {
         guestInfo: form.guestInfo,
       });
       setDone(true);
+      celebrate();
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong. Please try again.');
     }

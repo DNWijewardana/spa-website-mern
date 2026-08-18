@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
+import Button from '../components/ui/Button.jsx';
+import { useToast } from '../context/ToastContext.jsx';
+import { purchaseGiftCard } from '../lib/api.js';
 
 const DESIGNS = [
   { id: 'sage', label: 'Eucalyptus', from: 'from-sage-500', to: 'to-sage-900' },
@@ -11,9 +14,23 @@ const DESIGNS = [
 const AMOUNTS = [50, 100, 150, 250];
 
 export default function GiftCards() {
+  const { toast } = useToast();
   const [design, setDesign] = useState(DESIGNS[0]);
   const [amount, setAmount] = useState(100);
   const [flipped, setFlipped] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const buy = async () => {
+    setLoading(true);
+    try {
+      const res = await purchaseGiftCard({ amount, design: design.id });
+      toast(`Gift card ${res.code} created for $${res.amount}!`);
+    } catch (err) {
+      toast(err.response?.data?.message || 'Purchase failed.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <PageTransition>
@@ -99,9 +116,9 @@ export default function GiftCards() {
                 </div>
               </div>
 
-              <button className="btn-primary w-full sm:w-auto">
+              <Button loading={loading} onClick={buy}>
                 Buy ${amount} Gift Card
-              </button>
+              </Button>
               <p className="text-xs text-sage-500">
                 Delivered instantly by email, or schedule it for the perfect moment. Tap the card to flip it.
               </p>

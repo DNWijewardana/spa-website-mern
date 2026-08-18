@@ -5,6 +5,7 @@ import Service from '../models/Service.js';
 import Testimonial from '../models/Testimonial.js';
 import Therapist from '../models/Therapist.js';
 import BlogPost from '../models/BlogPost.js';
+import User from '../models/User.js';
 
 const services = [
   {
@@ -107,6 +108,19 @@ const run = async () => {
   await Testimonial.insertMany(testimonials);
   await Therapist.insertMany(therapists);
   await BlogPost.insertMany(posts);
+
+  // Idempotent admin account (does not wipe existing users)
+  const adminEmail = 'admin@serenityspa.com';
+  if (!(await User.findOne({ email: adminEmail }))) {
+    await User.create({
+      name: 'Spa Admin',
+      email: adminEmail,
+      passwordHash: await User.hashPassword('admin1234'),
+      role: 'admin',
+    });
+    console.log('👤 Admin created → admin@serenityspa.com / admin1234');
+  }
+
   console.log(
     `✅ Seeded ${services.length} services, ${testimonials.length} testimonials, ` +
       `${therapists.length} therapists, ${posts.length} blog posts`
