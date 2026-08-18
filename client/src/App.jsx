@@ -7,6 +7,8 @@ import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
 import About from './pages/About.jsx';
 import Booking from './pages/Booking.jsx';
+import Membership from './pages/Membership.jsx';
+import GiftCards from './pages/GiftCards.jsx';
 import Contact from './pages/Contact.jsx';
 
 export default function App() {
@@ -21,6 +23,8 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/booking" element={<Booking />} />
+            <Route path="/membership" element={<Membership />} />
+            <Route path="/gift-cards" element={<GiftCards />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </AnimatePresence>

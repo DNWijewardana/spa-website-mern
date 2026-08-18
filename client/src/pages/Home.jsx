@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import PageTransition from '../components/layout/PageTransition.jsx';
 import Reveal from '../components/ui/Reveal.jsx';
-import { getServices, getTestimonials } from '../lib/api.js';
+import TestimonialCarousel from '../components/sections/TestimonialCarousel.jsx';
+import { getServices } from '../lib/api.js';
 import { EASE } from '../lib/motion.js';
 
 function FloatingPetals() {
@@ -101,11 +102,9 @@ const STATS = [
 
 export default function Home() {
   const [services, setServices] = useState([]);
-  const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
     getServices({ featured: 'true' }).then(setServices).catch(() => {});
-    getTestimonials({ featured: 'true' }).then(setTestimonials).catch(() => {});
   }, []);
 
   return (
@@ -178,18 +177,8 @@ export default function Home() {
       {/* Testimonials */}
       <section className="section text-center">
         <Reveal><p className="eyebrow">Kind Words</p></Reveal>
-        <div className="mt-10 grid gap-8 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t._id || i} i={i}>
-              <blockquote className="h-full rounded-2xl bg-white/70 p-8 shadow-soft">
-                <div className="mb-3 text-sand-500">{'★'.repeat(t.rating || 5)}</div>
-                <p className="font-display text-xl italic text-sage-900">“{t.quote}”</p>
-                <footer className="mt-4 text-sm text-sage-500">
-                  {t.guestName} · {t.service}
-                </footer>
-              </blockquote>
-            </Reveal>
-          ))}
+        <div className="mt-10">
+          <TestimonialCarousel />
         </div>
       </section>
 

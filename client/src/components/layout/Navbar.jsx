@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 const links = [
   { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
+  { to: '/membership', label: 'Membership' },
+  { to: '/gift-cards', label: 'Gift Cards' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];

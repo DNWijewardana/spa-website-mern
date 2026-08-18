@@ -15,6 +15,8 @@ export default function Footer() {
           <h4 className="mb-3 text-sage-100">Explore</h4>
           <ul className="space-y-2 text-sm text-sage-300">
             <li><Link to="/services" className="hover:text-sand-500">Services</Link></li>
+            <li><Link to="/membership" className="hover:text-sand-500">Membership</Link></li>
+            <li><Link to="/gift-cards" className="hover:text-sand-500">Gift Cards</Link></li>
             <li><Link to="/about" className="hover:text-sand-500">About</Link></li>
             <li><Link to="/booking" className="hover:text-sand-500">Book</Link></li>
             <li><Link to="/contact" className="hover:text-sand-500">Contact</Link></li>
